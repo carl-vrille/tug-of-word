@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Tug of Word</title>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="//cdn.webrtc-experiment.com/getScreenId.js"></script>
+    <script src="//cdn.webrtc-experiment.com/screen.js"></script>                 
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+        <script defer src="/__/firebase/8.2.2/firebase-app.js"></script>                
+        <script defer src="/__/firebase/8.2.2/firebase-database.js"></script>
+        <script defer src="/__/firebase/8.2.2/firebase-firestore.js"></script>
+        <script defer src="/__/firebase/init.js?useEmulator=true"></script>    
+
+</head>
+<body>
+<div id="status">
+    <h1 id="timer-text">30</h1>
+    <button id="btn-start" onclick="setTimeout(myFunction, '30000')">Start</button>
+</div>
+
+<script type="text/javascript">
+        const timerText = document.getElementById("timer-text");
+        const btnStart = document.getElementById("btn-start");
+        let count = 30;
+        btnStart.addEventListener("click", function () {
+            setInterval(function () {
+                count -= 1;
+                timerText.textContent = count;
+        if (count === -1) {
+            console.log('Done');
+
+            setInterval(function() {
+                count = 30;
+                timerText.textContent = count;
+            });
+            }
+        }, 1000);
+    });
+    
+function myFunction() {
+    alert('TIMES UP!!!')
+};
+
+</script>
+
+<div id="videos" ">
+    <video id="localVideo"  muted autoplay playsinline></video>
+    <video id="remoteVideo"  autoplay playsinline></video>
+</div>
+
+<div class="mdc-dialog"
+    id="room-dialog"
+    role="alertdialog"
+    aria-modal="true"
+    aria-labelledby="my-dialog-title"
+    aria-describedby="my-dialog-content">
+    <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+        <h2 class="mdc-dialog__title" id="my-dialog-title"></h2>
+            <div class="mdc-dialog__content"> 
+            <div class="mdc-text__title">
+                The Room ID number is:
+                <div class="mdc-text-field">
+                    <input type="text" id="room-id" class="mdc-text-field__input">
+                    <label class="mdc-floating-label" for="my-text-field"></label>
+                    <div class="mdc-line-ripple"></div>
+                </div>
+            </div>
+            </div>
+    <footer class="mdc-dialog__actions">
+    <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
+        <span class="mdc-button__label">Cancel</span>
+    </button>
+    <button id="confirmJoinBtn" type="button" class="mdc-button mdc-dialog__button"
+                        data-mdc-dialog-action="yes">
+        <span class="mdc-button__label">OK</span>
+    </button>
+    </footer>
+</div>
+</div>  
+    <div class="mdc-dialog__scrim"></div>
+</div>
+<div id="buttons">
+    <button class="mdc-button mdc-button--raised" id="cameraBtn">
+        <i class="material-icons mdc-button__icon" aria-hidden="true">perm_camera_mic</i>
+        <span class="mdc-button__label">Open camera</span>
+    </button>
+
+<!--<script type="text/javascript">
+    function createRoom() {
+        roomId = roomRef.id;
+            addEventListener('createRoom', async () => {
+            document.querySelector('#room-id').value = roomId;
+            console.log('Create room: ', roomId);
+        roomDialog.open();
+        }
+</script>-->
+
+    <button class="mdc-button mdc-button--raised" disabled id="createBtn">
+        <i class="material-icons mdc-button__icon" aria-hidden="true">group_add</i>
+        <span class="mdc-button__label">Create room</span>
+    </button>
+    <button class="mdc-button mdc-button--raised" disabled id="joinBtn">
+        <i class="material-icons mdc-button__icon" aria-hidden="true">group</i>
+        <span class="mdc-button__label">Join room</span>
+    </button>
+    <button class="mdc-button mdc-button--raised" disabled id="hangupBtn">
+        <i class="material-icons mdc-button__icon" aria-hidden="true">close</i>
+        <span class="mdc-button__label">Hangup</span>
+            <a href="landing/landing.html" aria-hidden="true"></a>
+    </button>
+</div>
+
+</body>
+<script src="app.js"></script>
+</html>
