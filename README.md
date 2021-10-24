@@ -9,3 +9,4 @@ v1.2:-> Firebase Hosting properly configured for multiple paged
 
 https://tug-of-word.web.app/
 "# FireWord" 
+"# tug-of-word" 
